@@ -69,38 +69,12 @@ int main()
 
 	cout << "—ума не парних р€дк≥в = "<< sumMatrix(matrix,n, m)<<"\n";
 	
-	
-	//cout << "------------" << n << "----" << m << "\n";
-	
-	
-	/*
-	//вказ≥ник, ми вид≥л€Їмо пам€ть на n - чисел
-	int* mas = new int[n];
-
-	for (int i = 0; i < n; i++)
-	{
-		mas[i] = 0;
+	// Step 5: Deallocate memory
+	for (int i = 0; i < m; ++i) {
+		delete[] matrix[i]; // Delete each row
 	}
-	print(mas, n);
+	delete[] matrix; // Delete the row pointers
 
-	int a; // = stoi(argv[2]);  //друге число - поч€ток д≥апазону
-	int b; // = stoi(argv[3]);  //третЇ число - к≥нець д≥апазону
-	cout << "¬каж≥ть початок д≥пазону ->_";
-	cin >> a;
-	cout << "¬каж≥ть к≥нець д≥пазону ->_";
-	cin >> b;
-
-	for (int i = 0; i < n; i++)
-	{
-		mas[i] = a + std::rand() % (b - a + 1);
-	}
-	print(mas, n);
-
-	cout << "—умма чисел кратна 5 = " << summa(mas, n) << "\n";
-
-	delete[] mas; //очисчаЇмо пам'€ть
-	*/
-	//затримка в робот≥ програми
 	cin.get();
 	return 0;
 }

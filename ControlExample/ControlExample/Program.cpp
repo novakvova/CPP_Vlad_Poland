@@ -70,6 +70,8 @@ int main(int argc, char* argv[])
 	print(mas, n);
 
 	cout << "Сумма чисел кратна 5 = " << summa(mas, n) << "\n";
+
+	delete[] mas; //очисчаємо пам'ять
 	//затримка в роботі програми
 	cin.get();
 	return 0;

@@ -1,56 +1,80 @@
+/*
+Завдання 3:
+
+Ціль завдання — відпрацювання навичок роботи з потоками файлів.
+
+Завдання:
+Розробіть та реалізуйте:
+
+	Функцію pomoc, яка повертає інформацію про те, чи є переданий аргумент (рядок символів) 
+		адресою електронної пошти (на основі наявності символу @).
+	Функцію selektor, яка повертає логічне значення і служить для фільтрації вхідного 
+		файлу для пошуку та запису у вихідний файл усіх адрес електронної пошти, 
+		розділених крапкою з комою та знаком нового рядка. 
+		Використовуйте функцію pomoc, а всі операції з текстом виконуйте за допомогою типу string.
+
+Імена файлів:
+
+	Вхідний файл: in.txt
+	Вихідний файл: out.txt (передаються як параметри командного рядка під час запуску програми).
+Додаткові вимоги:
+	Прийміть, що виразом є кожний рядок символів, розділений пробілами, табуляцією, 
+		знаком кінця рядка або кінцем файлу.
+
+Розробіть та реалізуйте функцію main, яка забезпечить коректну роботу програми.
+
+*/
+
+
 #include<iostream>
 #include<fstream>
+#include <string>
+#include <sstream>
 using namespace std;
 
-bool isParamsArgv(string str) {
-	//argv[1] - tt@tt.tt
-	int pos = str.find('@');
-	return pos<str.length();
+//Перевірямо чи рядок містить @
+bool pomoc(const string& str) 
+{
+	return str.find('@') != string::npos;
 }
+
+void selektor(const string& input, const string& output) {
+	ifstream input_f(input);
+	ofstream out_f(output);
+
+	if (!input_f) {
+		std::cerr << "Не вдалося відкрити вхідний файл: " << input << std::endl;
+		return;
+	}
+
+	if (!out_f) {
+		std::cerr << "Не вдалося створити вихідний файл: " << output << std::endl;
+		return;
+	}
+
+	string line;
+	while (getline(input_f, line)) {
+		stringstream ss(line);
+		string word;
+		while (ss >> word) {
+			// Якщо слово є адресою електронної пошти, додаємо його у вихідний файл
+			//cout << word << endl;
+			if (pomoc(word)) {
+				out_f << word << ";\n";
+			}
+		}
+	}
+}
+
 int main(const int argc, const char* argv[])
 {
 	if (argc < 3)
 	{
-		cout << "Enter input.txt and output.txt argv!!!\n";
-	}
-	ifstream reader(argv[1]);
-	if (!reader) {
-		cout << "Problem out file!\n";
+		cout << "Enter input and output file name argv!!!\n";
 		return -1;
 	}
-	char word[100];
-	char ch;
-	int i = 0;
-	bool isEnd = false;
-	while (reader.get(ch)) {
-		//cout << ch;
-		if (ch == ' ')
-			isEnd = true;
-		if (ch == '\t')
-			isEnd = true;
-		if (ch == '\n')
-			isEnd = true;
-		if (isEnd) {
-			if (i == 0)
-				isEnd = false;
-			else {
-				//Перевірити чи word містить собаку @, якщо містить @, то записуємо у out.txt
-				word[i] = '\0';
-				cout << word << endl;
-				isEnd = false;
-				i = 0;
-			}
-		}
-		else {
-			word[i] = ch;
-			i++;
-		}
-	}
-	if (i != 0)
-	{
-		word[i] = '\0';
-		cout << word << "\n";
-	}
-	reader.close();
+
+	selektor(argv[1], argv[2]);
+
 	return 0;
 }

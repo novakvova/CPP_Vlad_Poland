@@ -42,6 +42,7 @@ int main() {
     SOkrag okrag = { 0.0, 1.0, 2.0 };
 
     int pier1 = pkt_przec(prosta1, okrag, p1, p2);
+    //int pier1 = pkt_przec(prosta2, okrag, p1, p2);
     if (pier1 == 2) {
         cout << "Peretyn Prymoi d tockkax: " << endl;
         cout << "(" << p1.x << ", " << p1.y << ")" << endl;
@@ -91,8 +92,8 @@ int pkt_przec(const SProsta& p, const SOkrag& o, SPunkt& p1, SPunkt& p2) {
     // маємо точку - SPunkt& p2
     // 1+p.a^2
     double A = 1 + p.a * p.a;     //Шукаємо коефіцієнти A
-    double B = 2 * (p.a * (p.b - o.b) - o.a); // B
-    double C = o.a * o.a + (p.b - o.b) * (p.b - o.b) - o.r * o.r; //B
+    double B = 2 * (p.a * (p.b - o.b) - o.a); // B  - o.b - y коондината, o.a - коондинати x кола 
+    double C = o.a * o.a + (p.b - o.b) * (p.b - o.b) - o.r * o.r; //С
 
     SRownanie r = { A, B, C };
     //Пошук дискримінанту
@@ -114,28 +115,3 @@ bool czy_prostopadle(const SProsta& p1, const SProsta& p2) {
 
 
 
-
-/*
-SPunkt p1 = { 0, 0 }, p2 = { 0, 0 };
-SProsta prosta1 = { -1.0, 3.0 };
-SProsta prosta2 = { 1.0, -3.0 };
-SOkrag okrag = { 0.0, 1.0, 2.0 };
-
-int pier1 = pkt_przec(prosta1, okrag, p1, p2);
-if (pier1 == 2) {
-    cout << "Пряма перетинає коло в точках: " << endl;
-    cout << "(" << p1.x << ", " << p1.y << ")" << endl;
-    cout << "(" << p2.x << ", " << p2.y << ")" << endl;
-}
-else if (pier1 == 1) {
-    cout << "Пряма є дотичною до кола в точці: " << endl;
-    cout << "(" << p1.x << ", " << p1.y << ")" << endl;
-}
-else if (pier1 == 0)
-cout << "Пряма не перетинає коло" << endl;
-else
-cout << "Немає розв'язків – це не квадратне рівняння";
-
-cout << "Чи є прямі перпендикулярними? " << boolalpha
-<< czy_prostopadle(prosta1, prosta2) << endl;
-*/

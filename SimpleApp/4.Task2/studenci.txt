@@ -1,0 +1,11 @@
+Semestr_2
+5
+Jan Kowalski 123123 1 2 1
+Podstawy_Programowania
+Alicja Branobi 123345 3 5 3
+Podstawy_Programowania Metody_numeryczne Grafika_komputerowa
+Krzysztof Piniak 234345 7 13 0
+Jan Novak 543123 6 12 4
+Podstawy_Programowania Metody_numeryczne WF Matematyka
+Barbara Kosa 243123 2 4 2
+Metody_numeryczne Grafika_komputerowa

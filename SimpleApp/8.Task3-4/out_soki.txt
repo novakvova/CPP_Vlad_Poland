@@ -1,0 +1,5 @@
+Kod коробки: ABC123
+Список соків у коробці:
+Sok 1 - Marka: Dawtona, Wysokosc: 15.5, Promien podstawy: 3.65
+Sok 2 - Marka: Hortex, Wysokosc: 16.5, Promien podstawy: 3
+Sok 3 - Marka: Tymbark, Wysokosc: 16, Promien podstawy: 3.5
